@@ -11,7 +11,7 @@ mkRosPackage rec {
 
   src = ./.;
 
-  propagatedBuildInputs = [ robonomics_comm python3Packages.pyyaml ];
+  propagatedBuildInputs = [ robonomics_comm-nightly python3Packages.pyyaml ];
 
   meta = with stdenv.lib; {
     description = "Simple modular AIRA example effort";
