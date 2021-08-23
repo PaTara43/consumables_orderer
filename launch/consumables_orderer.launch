@@ -1,0 +1,3 @@
+<launch>
+    <node name="consumables_orderer" pkg="consumables_orderer" type="consumables_orderer.py" output="screen" respawn="true"/>
+</launch>

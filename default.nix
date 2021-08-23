@@ -1,12 +1,12 @@
 { stdenv
 , mkRosPackage
-, robonomics_comm
+, robonomics_comm-nightly
 , python3Packages
 }:
 
 mkRosPackage rec {
   name = "${pname}-${version}";
-  pname = "autonomous_agent_template";
+  pname = "consumables_orderer";
   version = "master";
 
   src = ./.;

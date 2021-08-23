@@ -1,22 +1,24 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>autonomous_agent_template</name>
+  <name>consumables_orderer</name>
   <version>0.1.0</version>
-  <description>Simple modular AIRA example package.</description>
-  <author email="vadim.razorq@gmail.com">Vadim Manaenko</author>
-  <maintainer email="vadim.razorq@aira.life">Vadim Manaenko</maintainer>
+  <description>Consumables orderer for Gaka-Chu.</description>
+  <author email="p040399@outlook.com">Pavel Tarasov</author>
+  <maintainer email="p040399@outlook.com">Pavel Tarasov</maintainer>
   <license>BSD3</license>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>robonomics_msgs</build_depend>
   <build_depend>robonomics_liability</build_depend>
   <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
   <build_export_depend>robonomics_msgs</build_export_depend>
   <build_export_depend>robonomics_liability</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
   <exec_depend>robonomics_msgs</exec_depend>
   <exec_depend>robonomics_liability</exec_depend>
   <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
 
   <export>
   </export>
