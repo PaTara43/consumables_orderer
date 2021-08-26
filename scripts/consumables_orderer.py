@@ -41,7 +41,7 @@ def send_demand():
     # Build demand
     fields = {
         "model": {
-            "multihash": "QmWq1aS5hciRXWTVAk8YnTDaBggHJ936jtGYRxJf24dDqV"
+            "multihash": "QmZq9axSqwSVdGsJ4HQ5Mjucu1CW2xAWecmXCb5Y5ku47T"
         },
         "objective": {
             "multihash": "QmTGY5N4XSqYivgN1aVxtwx27s5ChC4KoJekq7gjShuGyA"
@@ -73,7 +73,7 @@ def send_demand():
     rospy.loginfo("Published!")
 
 
-def check_consumables_remains():
+def check_consumables_remains(data: str):
     """
     Check the amount of canvases left using a txt-file with a number as a tracker
     if less than 2, send demand
