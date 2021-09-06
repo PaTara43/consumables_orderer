@@ -3,6 +3,7 @@
 from os import path
 
 # ROS
+# import rospkg
 import rospy
 from std_msgs.msg import String
 
@@ -21,7 +22,7 @@ def make_deadline():
 
 
 def create_demand(fields: dict) -> Demand:
-    rospy.loginfo("Creating an demand...")
+    rospy.loginfo("Creating a demand...")
 
     demand = Demand()
     demand.model = Multihash(fields["model"]["multihash"])
@@ -47,7 +48,7 @@ def send_demand():
             "multihash": "QmTGY5N4XSqYivgN1aVxtwx27s5ChC4KoJekq7gjShuGyA"
         },
         "token": {
-            "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+            "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
         },
         "cost": {
             "uint256": "7500000000000000"
@@ -56,7 +57,7 @@ def send_demand():
             "address": "0x0000000000000000000000000000000000000000"
         },
         "lighthouse": {
-            "address": "airalab.lighthouse.5.robonomics.network"
+            "address": "0xD40AC7F1e5401e03D00F5aeC1779D8e5Af4CF9f1"
         },
         "validatorFee": {
             "uint256": "0"
@@ -78,9 +79,11 @@ def check_consumables_remains(data: str):
     Check the amount of canvases left using a txt-file with a number as a tracker
     if less than 2, send demand
     """
+    if data.data != "stop":
+        return False
 
     try:
-        f = open(path.dirname(path.abspath(__file__)) + "/consumables_remains.txt", "r+")
+        f = open("/home/kuka/consumables_orderer/scripts/consumables_remains.txt", "r+")
         number = int(f.read())
         f.seek(0)
         f.truncate()
@@ -93,9 +96,12 @@ def check_consumables_remains(data: str):
     rospy.loginfo(f"Current number of canvases: {number}")
     if number == 1:
         rospy.loginfo(f"Need to order canvases.")
-        send_demand()
         f.write("5")
         f.close()
+        try:
+            send_demand()
+        except Exception as e:
+            rospy.logerr(f"Error in sending demand {e}")
     else:
         f.write(str(number))
         f.close()
@@ -105,6 +111,9 @@ def check_consumables_remains(data: str):
 if __name__ == "__main__":
     rospy.init_node("consumables_orderer")
     rospy.loginfo("Node \"consumables_orderer\" initiated")
+
+    # rospack = rospkg.RosPack()
+    # packagePath = rospack.get_path("consumables_orderer") + "/"
 
     # Register drawing process topic listener (/film with a start|stop messages)
     rospy.Subscriber("film", String, check_consumables_remains)
